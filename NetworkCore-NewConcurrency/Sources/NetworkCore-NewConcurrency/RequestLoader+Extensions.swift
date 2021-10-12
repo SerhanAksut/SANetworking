@@ -13,9 +13,7 @@ import func Helpers.checkURLResponse
 
 @available(iOS 15.0, *)
 public extension RequestLoader {
-    func load<Response>(
-        request: Request<Response>
-    ) async throws -> Response {
+    func load<Response>(request: Request<Response>) async throws -> Response {
         let urlRequest = try createURLRequest(from: request, baseURL: baseURL)
         let (data, urlResponse) = try await urlSession.data(for: urlRequest)
         let resultData = try checkURLResponse(data: data, response: urlResponse, error: nil)
