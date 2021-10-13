@@ -42,8 +42,8 @@ private func getErrorIfExists(with statusCode: Int) -> NetworkError? {
     if statusCode == Constants.internalServer {
         return .internalServer
     }
-    if Constants.noConnectionCodes.contains(statusCode) {
-        return .noConnection
+    if statusCode == Constants.serviceUnavailable {
+        return .serviceUnavailable
     }
     return .badStatus
 }
@@ -55,5 +55,5 @@ private enum Constants {
     static let unauthorizedCodes = Set([401, 403])
     static let notFound = 404
     static let internalServer = 500
-    static let noConnectionCodes = Set([-1004, -1009])
+    static let serviceUnavailable = 503
 }
